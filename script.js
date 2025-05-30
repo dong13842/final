@@ -1,22 +1,20 @@
-// -------- Firebase Initialization (填入你的 config) --------
+// -------- Firebase Initialization --------
 const firebaseConfig = {
   apiKey: "AIzaSyCat1HrcITV5w2hCzAuagnHHclsuePQKk4",
   authDomain: "manage-yourself-35038.firebaseapp.com",
   databaseURL: "https://manage-yourself-35038-default-rtdb.firebaseio.com",
   projectId: "manage-yourself-35038",
-  storageBucket: "manage-yourself-35038.firebasestorage.app",
+  storageBucket: "manage-yourself-35038.appspot.com",
   messagingSenderId: "866147446706",
   appId: "1:866147446706:web:e851e78ef24022c0d07eab"
 };
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ==================== 首頁三處不規則煙火動畫（持續不中斷） ====================
+// ==================== 首頁三處不規則煙火動畫 ====================
 function randomPosition(container) {
-  // 計算容器內隨機位置
   const w = container.offsetWidth;
   const h = container.offsetHeight;
-  // 保證煙火不會太靠邊
   const x = Math.random() * (w * 0.7) + w * 0.15;
   const y = Math.random() * (h * 0.7) + h * 0.15;
   return { x, y };
@@ -25,7 +23,7 @@ function randomPosition(container) {
 function launchUnfixedFirework(container, idx) {
   if (!container) return;
   const colors = ['red', 'orange', 'yellow', 'blue', 'green', 'purple'];
-  const numFireworks = 8 + Math.floor(Math.random() * 8); // 8~15
+  const numFireworks = 8 + Math.floor(Math.random() * 8);
   const { x: cx, y: cy } = randomPosition(container);
   const R = 40 + Math.random() * 40;
 
@@ -67,7 +65,6 @@ function launchRandomFireworksAlwaysUnfixed() {
     launchUnfixedFirework(container, idx);
   });
 }
-// 頁面載入後，持續不規則放煙火
 window.addEventListener('DOMContentLoaded', () => {
   setInterval(launchRandomFireworksAlwaysUnfixed, 420);
 });
@@ -409,7 +406,7 @@ const realDate = document.getElementById('event-date');
 const fakeDate = document.getElementById('event-date-fake');
 function showMonthDay(val) {
   if (!val) return '';
-  const [y,m,d] = val.split('-');
+  const [y, m, d] = val.split('-');
   return `${parseInt(m)} / ${parseInt(d)}`;
 }
 function syncDateInputs(val) {
@@ -420,7 +417,7 @@ realDate.addEventListener('input', function() {
 });
 syncDateInputs(realDate.value);
 
-fakeDate.addEventListener('click', ()=>realDate.showPicker && realDate.showPicker());
+fakeDate.addEventListener('click', () => realDate.showPicker && realDate.showPicker());
 
 // ==================== 代辦區塊 ====================
 
@@ -442,7 +439,6 @@ function saveTodo() {
   const input = document.getElementById('todo-input');
   const text = input.value.trim();
   if (!text) return;
-  // 將 todo 儲存到 localStorage，或你可以改為存到 firebase
   addTodoItem(text);
   input.value = '';
 }
@@ -452,7 +448,7 @@ function getTodoList() {
   let list = [];
   try {
     list = JSON.parse(localStorage.getItem('todo-list') || '[]');
-  } catch (e) {}
+  } catch (e) { }
   return list;
 }
 function setTodoList(list) {
@@ -460,7 +456,7 @@ function setTodoList(list) {
 }
 function addTodoItem(text) {
   const list = getTodoList();
-  list.push({text, completed: false});
+  list.push({ text, completed: false });
   setTodoList(list);
   renderTodoList();
 }

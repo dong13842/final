@@ -8,10 +8,9 @@ body {
   color: #5e5e5e;
   padding: 0;
   box-sizing: border-box;
-  font-weight: bold; /* 統一全站粗體 */
+  font-weight: bold;
+  padding-bottom: 40px;
 }
-
-/* 統一所有標籤（含各區塊、表單、li等）字體、粗體 */
 *, *::before, *::after {
   font-family: inherit !important;
   font-weight: bold !important;
@@ -35,7 +34,6 @@ body {
   border-bottom-right-radius: 1.5em;
   overflow: hidden;
 }
-
 .navbar ul {
   width: 100%;
   display: flex;
@@ -47,12 +45,10 @@ body {
   padding: 0;
   font-size: 1.18rem;
 }
-
 .navbar li {
   margin: 0;
   padding: 0;
 }
-
 .navbar a {
   display: block;
   padding: 18px 34px;
@@ -63,16 +59,14 @@ body {
   transition: background 0.18s, color 0.18s, box-shadow 0.18s;
   box-shadow: 0 2px 8px rgba(238,156,167,0.08);
   letter-spacing: 1px;
-  background: none; /* 無白底 */
+  background: none;
 }
-
 .navbar a:hover, .navbar a:focus {
   background: #fff0f6;
   color: #ee599c;
   box-shadow: 0 4px 16px rgba(238,156,167,0.16);
   text-shadow: 0 1px 4px #fff5f9;
 }
-
 @media (max-width: 700px) {
   .navbar ul {
     gap: 10px;
@@ -86,25 +80,50 @@ body {
   }
 }
 
-.page {
-  padding: 2em;
-  min-height: 85vh;
-  margin-top: 60px;
-  display: block;
+/* ----------- 精準錨點跳轉，scroll-margin-top 設在 section ----------- */
+section#home,
+section#calendar,
+section#todo {
+  scroll-margin-top: 90px;
 }
+
+/* 首頁 header 橫向排列 */
 .welcome {
-  text-align: center;
   margin-top: 8vh;
   position: relative;
 }
-.welcome h1 {
+.home-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2vw;
+  margin-bottom: 2.2em;
+}
+.home-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.home-title h1 {
   font-size: 3.2em;
   color: #D23777;
-  margin-bottom: 0.8em;
+  margin-bottom: 0.6em;
   letter-spacing: 2px;
   text-shadow: 0 2px 8px #ffe2f0;
   font-weight: bold;
   position: relative;
+  text-align: left;
+}
+.home-title .cute-btn {
+  margin-top: 0.2em;
+}
+.fruit-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 2em;
+  margin: 0;
+  padding: 0;
 }
 .fireworks-random {
   position: absolute;
@@ -122,16 +141,15 @@ body {
     height: 80px;
   }
 }
-
 .cute-btn {
   background: #FFD972;
   border: none;
-  border-radius: 2em;
+  border-radius: 1.5em;
   color: #fff;
   font-weight: bold;
   padding: 0.7em 2em;
   margin-top: 1em;
-  font-size: 1.1em;
+  font-size: 0.8em;
   box-shadow: 0 2px 8px #e9e9e9;
   cursor: pointer;
   transition: background 0.2s;
@@ -141,13 +159,229 @@ body {
   color: #FFA5B9;
 }
 
-.fruit-row {
+/* =================== 更小的可愛水果 =================== */
+.fruit-min {
+  width: 70px;
+  height: 80px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.min-body {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin-top: 7px;
+  box-shadow: 0 4px 16px #ffd6e044;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pineapple-body { background: #ffe066; }
+.tomato-body { background: #ff6b6b; }
+.guava-body { background: #b6e388; }
+.min-eyes {
+  position: absolute;
+  top: 23px;
+  left: 0;
+  width: 52px;
   display: flex;
   justify-content: center;
-  gap: 3em;
-  margin-top: 2.5em;
+  gap: 7px;
+  z-index: 3;
+}
+.min-eyes::before,
+.min-eyes::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background: #222;
+  border-radius: 50%;
+  display: block;
+}
+.pineapple-leaf {
+  background: #a8e063;
+  width: 10px;
+  height: 12px;
+  border-radius: 7px 7px 7px 7px / 5px 5px 5px 5px;
+  left: 32px;
+  top: -2px;
+  transform: rotate(-7deg);
+  position: absolute;
+  z-index: 2;
+}
+.guava-leaf,
+.tomato-leaf {
+  background: #7dc855;
+  left: 28px;
+  top: 2px;
+  width: 14px;
+  height: 6px;
+  border-radius: 5px 5px 5px 5px / 3px 3px 3px 3px;
+  transform: rotate(-16deg);
+  position: absolute;
+  z-index: 2;
 }
 
+/* =================== 浮動效果 for 小卡 =================== */
+.home-card {
+  width: 480px !important;
+  height: 440px !important;
+  padding: 2em 2em !important;
+  font-size: 1.18em !important;
+  background: #fff;
+  border: 2px solid #FFD6E0;
+  border-radius: 1.5em;
+  box-shadow: 0 8px 28px 0 rgba(222, 105, 164, 0.18), 0 2px 12px #e9e9e9;
+  transition: transform 0.24s cubic-bezier(.36,1.6,.3,1), box-shadow 0.24s;
+  will-change: transform, box-shadow;
+  position: relative;
+  margin-top: -3em;
+}
+.home-card:hover, .home-card:focus-within {
+  transform: translateY(-14px) scale(1.025) rotate(-1deg);
+  box-shadow: 0 18px 48px 0 rgba(222, 105, 164, 0.28), 0 6px 16px #e9e9e9;
+  z-index: 3;
+}
+
+.cards-home {
+  margin-top: 2.5em;
+  justify-content: center;
+  gap: 2em;
+}
+
+/* =================== 可愛卡片區 =================== */
+.cute-card {
+  background: #fff;
+  border: 2px solid #FFD6E0;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 16px #e9e9e9;
+  padding: 2.5em 2em;
+  width: 500px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4em;
+  box-sizing: border-box;
+}
+.cards-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2.5em;
+  width: 80vw;
+  max-width: 1400px;
+  margin: 2em auto 0 auto;
+  flex-wrap: nowrap;
+}
+.cute-card h2 {
+  margin-top: 0;
+  font-size: 1.4em;
+}
+.goal-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  width: 100%;
+  margin-bottom: 1em;
+}
+.goal-input-group label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+}
+.crown {
+  margin-right: 0.6em;
+  font-size: 1.3em;
+}
+.goal-input {
+  flex: 1;
+  border-radius: 1em;
+  border: 1px solid #FFD6E0;
+  padding: 0.7em 1.2em;
+  font-size: 1.1em;
+  background: #FFF6FB;
+  transition: box-shadow 0.2s;
+  margin-left: 0.1em;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+.goal-input:focus {
+  box-shadow: 0 0 0 2px #FFD972;
+  outline: none;
+}
+.goal-input[readonly]:focus {
+  box-shadow: none;
+  outline: none;
+}
+#goal-display-list {
+  margin: 0 0 1em 0;
+  padding-left: 0;
+  font-size: 1.14em;
+  color: #a0617a;
+  background: none;
+}
+.goal-display-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4em;
+  font-size: 1.1em;
+}
+.goal-display-item .crown {
+  margin-right: 0.6em;
+  font-size: 1.3em;
+}
+/* fireworks container & fireworks */
+#fireworks-container {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 400px;
+  height: 150px;
+  pointer-events: none;
+  transform: translateX(-50%);
+  overflow: visible;
+  z-index: 20;
+}
+.firework {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  opacity: 0.8;
+  transition: transform 0.8s cubic-bezier(0.2,1.2,0.3,1), opacity 1s;
+}
+.red { background: #ff5252!important; }
+.orange { background: #ffb142!important; }
+.yellow { background: #ffe066!important; }
+.blue { background: #70a1ff!important; }
+.green { background: #2ed573!important; }
+.purple { background: #a29bfe!important; }
+
+/* =================== 響應式調整 =================== */
+@media (max-width: 1200px) {
+  .home-header-row { flex-direction: column; align-items: flex-start; gap: 1.2em;}
+  .fruit-row { justify-content: flex-start; }
+  .cards-home { flex-direction: column; align-items: center; gap: 1.2em;}
+  .home-card { width: 94vw !important; max-width: 520px !important; }
+}
+@media (max-width: 700px) {
+  .home-title h1 { font-size: 2em; }
+  .fruit-min { width: 48px; height: 56px; }
+  .min-body { width: 36px; height: 36px; margin-top: 5px; }
+  .min-eyes { top: 16px; width: 36px; gap: 6px; }
+  .home-card { width: 98vw !important; max-width: 98vw !important;}
+}
+
+/* =================== 水果造型 =================== */
 .fruit-min {
   width: 150px;
   height: 170px;
@@ -235,144 +469,6 @@ body {
   border-radius: 50%;
   display: block;
 }
-
-/* =================== 可愛卡片區 =================== */
-#cards {
-  position: relative;
-}
-
-#weather-location,
-#weather-desc {
-  font-size: 2rem;
-  line-height: 2.4rem;
-  letter-spacing: 1px;
-}
-
-#today-todo-list {
-  font-size: 1.7rem;
-  line-height: 2.4rem;
-  letter-spacing: 1px;
-  list-style: none;
-}
-
-#today-todo-list li {
-  font-size: 1.7rem;
-  line-height: 2.4rem;
-  letter-spacing: 1px;
-  padding-top: 0.3em;
-  padding-bottom: 0.3em;
-}
-.cute-card {
-  background: #fff;
-  border: 2px solid #FFD6E0;
-  border-radius: 1.5em;
-  box-shadow: 0 4px 16px #e9e9e9;
-  padding: 2.5em 2em;
-  width: 500px;  
-  height: 600px; 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 1.4em;
-  box-sizing: border-box;
-}
-.cards-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: stretch;
-  gap: 2.5em;
-  width: 80vw;
-  max-width: 1400px;
-  margin: 2em auto 0 auto;
-  flex-wrap: nowrap;
-}
-.cute-card h2 {
-  margin-top: 0;
-  font-size: 1.4em;
-}
-.goal-input-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.7em;
-  width: 100%;
-  margin-bottom: 1em;
-}
-.goal-input-group label {
-  display: flex;
-  align-items: center;
-  font-size: 1.1em;
-  margin-bottom: 0.5em;
-}
-.crown {
-  margin-right: 0.6em;
-  font-size: 1.3em;
-}
-.goal-input {
-  flex: 1;
-  border-radius: 1em;
-  border: 1px solid #FFD6E0;
-  padding: 0.7em 1.2em;
-  font-size: 1.1em;
-  background: #FFF6FB;
-  transition: box-shadow 0.2s;
-  margin-left: 0.1em;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  box-sizing: border-box;
-}
-.goal-input:focus {
-  box-shadow: 0 0 0 2px #FFD972;
-  outline: none;
-}
-.goal-input[readonly]:focus {
-  box-shadow: none;
-  outline: none;
-}
-#goal-display-list {
-  margin: 0 0 1em 0;
-  padding-left: 0;
-  font-size: 1.14em;
-  color: #a0617a;
-  background: none;
-}
-.goal-display-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.4em;
-  font-size: 1.1em;
-}
-.goal-display-item .crown {
-  margin-right: 0.6em;
-  font-size: 1.3em;
-}
-/* fireworks container & fireworks */
-#fireworks-container {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    width: 400px;
-    height: 150px;
-    pointer-events: none;
-    transform: translateX(-50%);
-    overflow: visible;
-    z-index: 20;
-}
-.firework {
-    position: absolute;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    opacity: 0.8;
-    transition: transform 0.8s cubic-bezier(0.2,1.2,0.3,1), opacity 1s;
-}
-.red { background: #ff5252!important; }
-.orange { background: #ffb142!important; }
-.yellow { background: #ffe066!important; }
-.blue { background: #70a1ff!important; }
-.green { background: #2ed573!important; }
-.purple { background: #a29bfe!important; }
 
 /* =================== 月曆區塊 =================== */
 #calendar-app {
@@ -716,6 +812,38 @@ body {
     min-height: 470px;
     max-height: none;
     height: 470px;
+  }
+}
+@media (max-width: 900px) {
+  .cards-home {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.4em;
+  }
+  .mini-card {
+    width: 90vw !important;
+    max-width: 350px !important;
+  }
+  .card-fruit {
+    flex-direction: row;
+    gap: 1.2em;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .cards-home .fruit-min {
+    width: 48px;
+    height: 56px;
+  }
+  .cards-home .min-body {
+    width: 36px;
+    height: 36px;
+    margin-top: 5px;
+  }
+  .cards-home .min-eyes {
+    top: 16px;
+    width: 36px;
+    gap: 6px;
   }
 }
 @media (max-width: 700px) {

@@ -14,9 +14,8 @@
   <nav class="navbar">
     <ul>
       <li><a href="#home">首頁</a></li>
-      <li><a href="#cards">浮動小卡</a></li>
-      <li><a href="#calendar">月曆</a></li>
-      <li><a href="#todo">代辦事項</a></li>
+      <li><a href="#calendar-main">月曆</a></li>
+      <li><a href="#todo-main">代辦事項</a></li>
     </ul>
   </nav>
 
@@ -26,36 +25,36 @@
       <div id="fw1" class="fireworks-random"></div>
       <div id="fw2" class="fireworks-random"></div>
       <div id="fw3" class="fireworks-random"></div>
-      <h1>歡迎使用日常管家！</h1>
-      <button id="start-btn" class="cute-btn" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">開始使用</button>
-      <div class="fruit-row">
-        <!-- Pineapple -->
-        <div class="fruit-min pineapple-min">
-          <div class="min-leaf pineapple-leaf"></div>
-          <div class="min-body pineapple-body"></div>
-          <div class="min-eyes"></div>
+      <div class="home-header-row">
+        <div class="home-title">
+          <h1>歡迎使用日常管家！</h1>
         </div>
-        <!-- Tomato -->
-        <div class="fruit-min tomato-min">
-          <div class="min-leaf tomato-leaf"></div>
-          <div class="min-body tomato-body"></div>
-          <div class="min-eyes"></div>
-        </div>
-        <!-- Guava -->
-        <div class="fruit-min guava-min">
-          <div class="min-leaf guava-leaf"></div>
-          <div class="min-body guava-body"></div>
-          <div class="min-eyes"></div>
+        <div class="fruit-row">
+          <!-- Pineapple -->
+          <div class="fruit-min pineapple-min">
+            <div class="min-leaf pineapple-leaf"></div>
+            <div class="min-body pineapple-body"></div>
+            <div class="min-eyes"></div>
+          </div>
+          <!-- Tomato -->
+          <div class="fruit-min tomato-min">
+            <div class="min-leaf tomato-leaf"></div>
+            <div class="min-body tomato-body"></div>
+            <div class="min-eyes"></div>
+          </div>
+          <!-- Guava -->
+          <div class="fruit-min guava-min">
+            <div class="min-leaf guava-leaf"></div>
+            <div class="min-body guava-body"></div>
+            <div class="min-eyes"></div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- 浮動小卡 -->
-  <section id="cards" class="page" style="position: relative;">
-    <div class="cards-container">
+    <!-- 三張小卡 -->
+    <div id="home-cards-row" class="cards-container cards-home">
       <!-- 年度目標小卡 -->
-      <div class="card cute-card" id="goal-card" style="position: relative;">
+      <div class="card cute-card home-card" id="goal-card" style="position: relative;">
         <div id="fireworks-container"></div>
         <h2>🎯 年度目標</h2>
         <div class="goal-input-group" id="goal-input-group">
@@ -67,7 +66,7 @@
         <button class="cute-btn" id="save-goal">儲存目標</button>
       </div>
       <!-- 天氣小卡 -->
-      <div class="card cute-card" id="weather-card">
+      <div class="card cute-card home-card" id="weather-card">
         <h2>☀️ 天氣</h2>
         <div id="weather-info">
           <span id="weather-location">定位中...</span><br>
@@ -75,7 +74,7 @@
         </div>
       </div>
       <!-- 今日代辦小卡 -->
-      <div class="card cute-card" id="today-todo-card">
+      <div class="card cute-card home-card" id="today-todo-card">
         <h2>📝 今日代辦</h2>
         <ul id="today-todo-list"></ul>
       </div>
@@ -83,47 +82,49 @@
   </section>
 
   <!-- 月曆 -->
-  <section id="calendar" class="page">
-    <div id="calendar-app">
-      <!-- 新增事項區 -->
-      <div id="event-input">
-        <div class="calendar-panel-title">
-          <span class="shiny-star">✨</span>
-          <span>calendar</span>
+  <section class="page">
+    <div id="calendar-main" style="scroll-margin-top:90px;">
+      <div id="calendar-app">
+        <!-- 新增事項區 -->
+        <div id="event-input">
+          <div class="calendar-panel-title">
+            <span class="shiny-star">✨</span>
+            <span>calendar</span>
+          </div>
+          <form id="event-form">
+            <div class="event-form-row row-date">
+              <label for="event-date-fake" class="event-label-date">日期</label>
+              <input type="date" id="event-date" style="display:none;">
+              <input type="text" id="event-date-fake" readonly placeholder="月/日" />
+            </div>
+            <div class="event-form-row row-task">
+              <textarea id="event-desc" maxlength="50" required placeholder="請輸入事項"></textarea>
+              <button type="submit">新增</button>
+            </div>
+          </form>
+          <div id="event-list"></div>
         </div>
-        <form id="event-form">
-          <div class="event-form-row row-date">
-            <label for="event-date-fake" class="event-label-date">日期</label>
-            <input type="date" id="event-date" style="display:none;">
-            <input type="text" id="event-date-fake" readonly placeholder="月/日" />
+        <!-- 月曆主體 -->
+        <div id="calendar">
+          <div id="calendar-container">
+            <div id="calendar-header">
+              <button id="prev-month">←</button>
+              <span id="calendar-month-title-inner"></span>
+              <button id="next-month">→</button>
+            </div>
+            <div id="calendar-weekdays">
+              <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
+            </div>
+            <div id="calendar-days"></div>
           </div>
-          <div class="event-form-row row-task">
-            <textarea id="event-desc" maxlength="50" required placeholder="請輸入事項"></textarea>
-            <button type="submit">新增</button>
-          </div>
-        </form>
-        <div id="event-list"></div>
-      </div>
-      <!-- 月曆主體 -->
-      <div id="calendar">
-        <div id="calendar-container">
-          <div id="calendar-header">
-            <button id="prev-month">←</button>
-            <span id="calendar-month-title-inner"></span>
-            <button id="next-month">→</button>
-          </div>
-          <div id="calendar-weekdays">
-            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
-          </div>
-          <div id="calendar-days"></div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- 代辦事項 -->
-  <section id="todo" class="page">
-    <div class="todo-main-flex">
+  <section class="page">
+    <div id="todo-main" class="todo-main-flex" style="scroll-margin-top:90px;">
       <!-- 浮動番茄鐘 -->
       <div class="pomodoro-box">
         <div class="pomodoro-section">
@@ -137,7 +138,6 @@
             </div>
             <div class="timer-text" id="pomodoro-timer">50:00</div>
           </div>
-
           <div class="pomo-settings-row">
             <div class="pomo-setting-col">
               <span class="pomo-label">工作</span>
