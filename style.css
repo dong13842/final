@@ -136,9 +136,70 @@ section h2 {
     text-align: center;
 }
 
+.goal-item.saved {
+    border: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    cursor: default;
+}
+
 .emoji {
     font-size: 2.5rem;
     user-select: none;
+}
+
+.goal-list {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.goal-item-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.4rem;
+    color: #34495e;
+}
+
+.goal-item-label .emoji {
+    font-size: 1.8rem;
+}
+
+.goal-item {
+    flex: 1;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    border: 2px solid #2980b9;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.goal-item:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 8px rgba(230, 126, 34, 0.6);
+}
+
+#save-goal-btn {
+    padding: 10px 28px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    max-width: 150px;
+    margin:30px auto 0 auto;
+    background-color: #666ca4;
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#save-goal-btn:hover {
+    background-color: #305c78;
 }
 
 .no-border {
@@ -146,7 +207,7 @@ section h2 {
     box-shadow: none !important;
     background-color: transparent !important;
 }
-/*
+
 .main-content-container {
     display: flex;
     justify-content: space-between; 
@@ -155,7 +216,7 @@ section h2 {
     gap: 30px;
     flex-wrap: wrap; 
     margin-top: 20px;
-}*/
+}
 
 .info-section {
     flex: 2; 
@@ -178,121 +239,61 @@ section h2 {
 }
 
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  width: 100%;
-  max-width: 1200px;
-  margin: 50px auto 0 auto;
-  z-index: 10;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; 
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 50px auto 0 auto; 
+    z-index: 10;
 }
 
-.weather-card, .goal-card, .horoscope-card {
-  min-width: 300px;
-  max-width: 450px;
-  background-color: rgba(255, 255, 255, 0.95);
-  border-radius: 15px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-  padding: 30px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+.weather-card, .horoscope-card, .goal-card {
+    flex: 1; 
+    min-width: 300px;
+    max-width: 450px; 
+    background-color: rgba(255, 255, 255, 0.95); 
+    border-radius: 15px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); 
+    padding: 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 500px;
+    overflow:auto;
 }
 
-.weather-card:hover, .goal-card:hover, .horoscope-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+.weather-card:hover, .horoscope-card:hover, .goal-card:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
 }
 
-.weather-card h3, .goal-card h3, .horoscope-card h3 {
-  font-size: 2rem;
-  color: #34495e;
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  font-weight: 700;
-}
-
-.goal-list {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: stretch;
-  flex: 1;
-  width: 100%;
-}
-
-.goal-item-label {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 1.4rem;
-  color: #34495e;
-}
-
-.goal-item {
-  flex: 1;
-  padding: 12px 15px;
-  font-size: 1.2rem;
-  border: 2px solid #2980b9;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s ease;
-  width: 100%;
-  background: #fff;
-}
-
-.goal-item:focus {
-  border-color: #e67e22;
-  box-shadow: 0 0 8px rgba(230, 126, 34, 0.2);
-}
-
-.goal-item.saved {
-    border: none !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-    cursor: default;
-}
-
-#save-goal-btn {
-  margin-top: 18px;
-  align-self: center;
-  padding: 10px 28px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  background-color: #666ca4;
-  border: none;
-  border-radius: 50px;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  max-width: 150px;
-}
-
-#save-goal-btn:hover {
-  background-color: #305c78;
+.weather-card h3, .horoscope-card h3, .goal-card h3 {
+    font-size: 2rem; /* 增大標題字體 */
+    color: #34495e; /* 更深的顏色 */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px; /* 增大 emoji 和文字間距 */
+    font-weight: 700;
 }
 
 .weather-card p {
-    font-size: 1.2rem; 
+    font-size: 1.2rem; /* 增大文字 */
     color: #555;
     margin-bottom: 10px;
 }
 
 #weather-temp {
-    font-size: 3rem; 
+    font-size: 3rem; /* 溫度數字更顯眼 */
     font-weight: bold;
-    color: #e67e22; 
+    color: #e67e22; /* 溫暖的橘色 */
     margin-top: 15px;
     margin-bottom: 15px;
 }
 
+/* 星座運勢選擇器樣式 */
 .horoscope-selector {
     margin-bottom: 20px;
     display: flex;
@@ -310,7 +311,7 @@ section h2 {
 #horoscope-select {
     padding: 12px 20px;
     font-size: 1.1rem;
-    border: 2px solid #667eea; 
+    border: 2px solid #667eea; /* 與歡迎區塊色調一致 */
     border-radius: 10px;
     outline: none;
     cursor: pointer;
@@ -318,7 +319,7 @@ section h2 {
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
     width: 90%;
     max-width: 300px;
-    appearance: none; 
+    appearance: none; /* 移除預設下拉箭頭 */
     background-image: url('data:image/svg+xml;utf8,<svg fill="%232c3e50" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* 自定義箭頭 */
     background-repeat: no-repeat;
     background-position: right 15px center;
