@@ -1,168 +1,183 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>管好自己</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
-  <body>
-
-    <nav class="navbar">
-      <div class="nav brand a"><h3>管好自己</h3></div>
-    <ul class="navbar-links">
-        <li><a href="#welcome">首頁</a></li>
-        <li><a href="#card">開始</a></li>        
-        <li><a href="#calendar">日曆</a></li>
-        <li><a href="#todo-list">待辦事項</a></li>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>日常管家</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Firebase CDN -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+</head>
+<body>
+  <!-- 導覽欄 -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#home">首頁</a></li>
+      <li><a href="#cards">浮動小卡</a></li>
+      <li><a href="#calendar">月曆</a></li>
+      <li><a href="#todo">代辦事項</a></li>
     </ul>
-</nav>
+  </nav>
 
-<section id="welcome">
-      <div class="welcome-content">
-        <h1>歡迎來到你的生活儀表板</h1>
-        <p class="subtitle">一個整合所有你需要的高效工具，讓你的生活更有條理。</p>
-        <button class="start-button" id="start-btn-main">開始使用</button>
+  <!-- 首頁 -->
+  <section id="home" class="page">
+    <div class="welcome" style="position:relative;">
+      <div id="fw1" class="fireworks-random"></div>
+      <div id="fw2" class="fireworks-random"></div>
+      <div id="fw3" class="fireworks-random"></div>
+      <h1>歡迎使用日常管家！</h1>
+      <button id="start-btn" class="cute-btn" onclick="document.getElementById('cards').scrollIntoView({behavior:'smooth'})">開始使用</button>
+      <div class="fruit-row">
+        <!-- Pineapple -->
+        <div class="fruit-min pineapple-min">
+          <div class="min-leaf pineapple-leaf"></div>
+          <div class="min-body pineapple-body"></div>
+          <div class="min-eyes"></div>
+        </div>
+        <!-- Tomato -->
+        <div class="fruit-min tomato-min">
+          <div class="min-leaf tomato-leaf"></div>
+          <div class="min-body tomato-body"></div>
+          <div class="min-eyes"></div>
+        </div>
+        <!-- Guava -->
+        <div class="fruit-min guava-min">
+          <div class="min-leaf guava-leaf"></div>
+          <div class="min-body guava-body"></div>
+          <div class="min-eyes"></div>
+        </div>
       </div>
-</section>
-<section id="card">
-     <div class="cards-container">
-      <!--weather-->
-        <div class="weather-card">
-            <h3><span class="emoji">☀️</span> WEATHER</h3>
-            <p id="weather-location">Loading...</p>
-            <p id="weather-temp">Loading...</p>
-            <p id="weather-description">Loading...</p>
-        </div>
-      <!--goal-->
-        <div class="goal-card">
-          <h3><span class="emoji">🎯</span> 年度目標</h3>
-            <div class="goal-list"> <div class="main-content-container"> 
-              <label class="goal-item-label">
-                <span class="emoji">👑</span>
-                <input type="text" class="goal-item" placeholder="目標一" />
-              </label>
-              <label class="goal-item-label">
-                <span class="emoji">👑</span>
-                <input type="text" class="goal-item" placeholder="目標二" />
-              </label>
-              <label class="goal-item-label">
-                <span class="emoji">👑</span>
-                <input type="text" class="goal-item" placeholder="目標三" />
-              </label>
-              </div>
-            <button id="save-goal-btn">儲存目標</button>
-            </div>
-        </div>
-      <!--horoscope-->
-        <div class="horoscope-card">
-            <h3><span class="emoji">✨</span> 星座運勢</h3>
-            <div class="horoscope-selector">
-                <label for="horoscope-select">選擇你的星座：</label>
-                <select id="horoscope-select">
-                    <option value="">請選擇</option>
-                    <option value="aries">牡羊座</option>
-                    <option value="taurus">金牛座</option>
-                    <option value="gemini">雙子座</option>
-                    <option value="cancer">巨蟹座</option>
-                    <option value="leo">獅子座</option>
-                    <option value="virgo">處女座</option>
-                    <option value="libra">天秤座</option>
-                    <option value="scorpio">天蠍座</option>
-                    <option value="sagittarius">射手座</option>
-                    <option value="capricorn">摩羯座</option>
-                    <option value="aquarius">水瓶座</option>
-                    <option value="pisces">雙魚座</option>
-                </select>
-            </div>
-            <p id="horoscope-result">請選擇你的星座以查看今日運勢。</p>
-        </div>
-</section>
-
-
-<!--calendar-->
-  <section id="calendar-app">
-    <div id="event-input">
-      <form id="event-form">
-        <h1><span class="shiny-star">✨</span>Schedule</h1><br/>
-        <label for="event-date">📅 Date</label>
-        <input type="date" id="event-date" required />
-        <br />
-        <label for="event-desc">📝 Content</label>
-        <textarea id="event-desc" required></textarea>
-        <button type="submit">ADD</button>
-      </form>
-      <div id="event-message" style="margin-top: 1rem; color: green;"></div>
-      <div id="event-list"></div>
     </div>
+  </section>
 
-    <section id="calendar">
-      <div id="calendar-wrapper">
+  <!-- 浮動小卡 -->
+  <section id="cards" class="page" style="position: relative;">
+    <div class="cards-container">
+      <!-- 年度目標小卡 -->
+      <div class="card cute-card" id="goal-card" style="position: relative;">
+        <div id="fireworks-container"></div>
+        <h2>🎯 年度目標</h2>
+        <div class="goal-input-group" id="goal-input-group">
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-1" placeholder="目標一..."></label>
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-2" placeholder="目標二..."></label>
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-3" placeholder="目標三..."></label>
+        </div>
+        <ul class="goal-display-list" id="goal-display-list" style="display:none; width:100%;"></ul>
+        <button class="cute-btn" id="save-goal">儲存目標</button>
+      </div>
+      <!-- 天氣小卡 -->
+      <div class="card cute-card" id="weather-card">
+        <h2>☀️ 天氣</h2>
+        <div id="weather-info">
+          <span id="weather-location">定位中...</span><br>
+          <span id="weather-desc"></span>
+        </div>
+      </div>
+      <!-- 今日代辦小卡 -->
+      <div class="card cute-card" id="today-todo-card">
+        <h2>📝 今日代辦</h2>
+        <ul id="today-todo-list"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 月曆 -->
+  <section id="calendar" class="page">
+    <div id="calendar-app">
+      <!-- 新增事項區 -->
+      <div id="event-input">
+        <div class="calendar-panel-title">
+          <span class="shiny-star">✨</span>
+          <span>calendar</span>
+        </div>
+        <form id="event-form">
+          <div class="event-form-row row-date">
+            <label for="event-date-fake" class="event-label-date">日期</label>
+            <input type="date" id="event-date" style="display:none;">
+            <input type="text" id="event-date-fake" readonly placeholder="月/日" />
+          </div>
+          <div class="event-form-row row-task">
+            <textarea id="event-desc" maxlength="50" required placeholder="請輸入事項"></textarea>
+            <button type="submit">新增</button>
+          </div>
+        </form>
+        <div id="event-list"></div>
+      </div>
+      <!-- 月曆主體 -->
+      <div id="calendar">
         <div id="calendar-container">
           <div id="calendar-header">
-            <button id="prev-month">&lt;</button>
-            <span id="month-year"></span>
-            <button id="next-month">&gt;</button>
+            <button id="prev-month">←</button>
+            <span id="calendar-month-title-inner"></span>
+            <button id="next-month">→</button>
           </div>
           <div id="calendar-weekdays">
-            <div>日</div>
-            <div>一</div>
-            <div>二</div>
-            <div>三</div>
-            <div>四</div>
-            <div>五</div>
-            <div>六</div>
+            <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
           </div>
           <div id="calendar-days"></div>
         </div>
       </div>
-    </section>
-
+    </div>
   </section>
 
-<!--to-do-->
-<div id="todo"></div>
-  <!--tomato-->
-  <div class="main-container">
-    <section class="pomodoro-box">
-      <div id="pomodoro-fireworks-container" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 80px; pointer-events: none; overflow: hidden; z-index: 1;"></div>
-      <div class="tomato">
-        <div class="leaf"></div>
-        <div class="face">
-          <div class="eyes">
-            <div class="eye"></div>
-            <div class="eye"></div>
+  <!-- 代辦事項 -->
+  <section id="todo" class="page">
+    <div class="todo-main-flex">
+      <!-- 浮動番茄鐘 -->
+      <div class="pomodoro-box">
+        <div class="pomodoro-section">
+          <div class="tomato" id="tomato">
+            <div class="leaf"></div>
+            <div class="face">
+              <div class="eyes">
+                <div class="eye"></div>
+                <div class="eye"></div>
+              </div>
+            </div>
+            <div class="timer-text" id="pomodoro-timer">50:00</div>
           </div>
-          <div id="timer" class="timer-text">30:00</div>
+
+          <div class="pomo-settings-row">
+            <div class="pomo-setting-col">
+              <span class="pomo-label">工作</span>
+              <button class="pomo-mini-btn" id="work-minus">-</button>
+              <span class="pomo-num" id="work-minutes">50</span>
+              <button class="pomo-mini-btn" id="work-plus">+</button>
+              <span class="pomo-unit">分鐘</span>
+            </div>
+            <div class="pomo-setting-col">
+              <span class="pomo-label">休息</span>
+              <button class="pomo-mini-btn" id="rest-minus">-</button>
+              <span class="pomo-num" id="rest-minutes">10</span>
+              <button class="pomo-mini-btn" id="rest-plus">+</button>
+              <span class="pomo-unit">分鐘</span>
+            </div>
+            <div class="pomo-setting-col">
+              <span class="pomo-label">循環</span>
+              <button class="pomo-mini-btn" id="cycle-minus">-</button>
+              <span class="pomo-num" id="cycle-times">1</span>
+              <button class="pomo-mini-btn" id="cycle-plus">+</button>
+              <span class="pomo-unit">次</span>
+            </div>
+          </div>
+          <div style="text-align:center; margin-top:24px;">
+            <button class="cute-btn" id="pomodoro-start">開始</button>
+            <button class="cute-btn" id="pomodoro-pause">暫停</button>
+            <button class="cute-btn" id="pomodoro-reset">重置</button>
+          </div>
         </div>
       </div>
-      <div class="settings">
-        <label>工作時間<input type="number" id="work-time" min="1" max="120" value="30" />分鐘</label>
-        <label>休息時間<input type="number" id="break-time" min="1" max="120" value="10"/>分鐘</label>
-        <label>循環次數<input type="number" id="cycles-input" min="1" max="50" value="1"/>次</label>      </div>
-      <div class="button-group">
-        <button id="start-btn">開始</button>
-        <button id="pause-btn" disabled>暫停</button>
-        <button id="reset-btn" disabled>重置</button>
+      <!-- 新增代辦 -->
+      <div class="todo-container">
+        <form id="todo-form">
+          <input type="text" id="todo-input" placeholder="新增代辦事項..." maxlength="30" required>
+          <button class="cute-btn" type="submit">新增</button>
+        </form>
+        <ul id="todo-list"></ul>
       </div>
-    </section>
-    <!--list-->
-    <div class="todo-container">
-      <div id="todo-fireworks-container" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 5;"></div>
-      <h1>TO-DO</h1>
-      <br />
-      <div class="todo-input-area">
-        <input type="text" id="todo-input" placeholder="輸入代辦事項..." />
-        <button id="add-btn">新增</button>
-      </div>
-      <br />
-      <ul id="todo-list"></ul>
-      <div id="fireworks-container" style="position: fixed; top: 0; left: 50%; width: 400px; height: 150px; pointer-events: none; transform: translateX(-50%); z-index: 1000; overflow: visible;"></div>
     </div>
-  </div>
+  </section>
   <script src="script.js"></script>
-  </body>
+</body>
 </html>

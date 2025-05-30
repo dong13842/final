@@ -1,390 +1,353 @@
-/* ===== Global Settings ===== */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+html {
+  scroll-behavior: smooth;
 }
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    scroll-behavior: smooth;
-    background: linear-gradient(to bottom, #d0a2ff, #a5e6ff, #ff96f8);
-    min-height: 100vh;
-    color: #333;
+  font-family: Arial, 'Microsoft JhengHei', 'Segoe UI', 'Nunito', sans-serif;
+  margin: 0;
+  background: #FFE2F2;
+  color: #5e5e5e;
+  padding: 0;
+  box-sizing: border-box;
+  font-weight: bold; /* 統一全站粗體 */
 }
 
-/* Welcome Section */
-#welcome {
-    display: flex;
-    flex-direction: column; 
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: transparent; 
-    color: rgb(255, 255, 255);
-    padding: 120px 20px;
-    position: relative;
-    overflow: hidden;
+/* 統一所有標籤（含各區塊、表單、li等）字體、粗體 */
+*, *::before, *::after {
+  font-family: inherit !important;
+  font-weight: bold !important;
+  letter-spacing: 0.5px;
 }
 
-.welcome-content {
-    z-index: 10;
-    max-width: 800px;
-    margin-bottom: 50px;
+/* 導覽欄 */
+.navbar {
+  width: 100vw;
+  background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
+  box-shadow: 0 4px 16px rgba(238,156,167,0.20), 0 1.5px 6px rgba(0,0,0,0.08);
+  padding: 0;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  border-bottom-left-radius: 1.5em;
+  border-bottom-right-radius: 1.5em;
+  overflow: hidden;
 }
 
-.welcome-content h1 {
-    font-size: 3.8rem;
-    margin-bottom: 20px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+.navbar ul {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 44px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 1.18rem;
 }
 
-.welcome-content .subtitle {
-    font-size: 1.6rem;
-    line-height: 1.5;
-    margin-bottom: 40px;
-    opacity: 0.9;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+.navbar li {
+  margin: 0;
+  padding: 0;
 }
 
-.start-button {
-    padding: 18px 45px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    background-color: #5e57db;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+.navbar a {
+  display: block;
+  padding: 18px 34px;
+  border-radius: 2em;
+  text-decoration: none;
+  color: #d23777;
+  font-weight: 600;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px rgba(238,156,167,0.08);
+  letter-spacing: 1px;
+  background: none; /* 無白底 */
 }
 
-.start-button:hover {
-    background-color: #804daf;
-    transform: translateY(-3px); /* 輕微上浮效果 */
+.navbar a:hover, .navbar a:focus {
+  background: #fff0f6;
+  color: #ee599c;
+  box-shadow: 0 4px 16px rgba(238,156,167,0.16);
+  text-shadow: 0 1px 4px #fff5f9;
 }
 
-/* ===== Navigation Bar ===== */
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #003366;
-    color: white;
-    padding: 10px 20px; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    height: 60px; 
-    z-index: 1000;
-    font-weight: bold; 
-    border-top-left-radius: 15px; 
-    border-top-right-radius: 15px;
+@media (max-width: 700px) {
+  .navbar ul {
+    gap: 10px;
+    font-size: 1rem;
+  }
+  .navbar a {
+    padding: 12px 18px;
+  }
+  .navbar {
+    min-height: 48px;
+  }
 }
 
-.navbar-brand a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.8rem;
-    font-weight: bold; 
+.page {
+  padding: 2em;
+  min-height: 85vh;
+  margin-top: 60px;
+  display: block;
+}
+.welcome {
+  text-align: center;
+  margin-top: 8vh;
+  position: relative;
+}
+.welcome h1 {
+  font-size: 3.2em;
+  color: #D23777;
+  margin-bottom: 0.8em;
+  letter-spacing: 2px;
+  text-shadow: 0 2px 8px #ffe2f0;
+  font-weight: bold;
+  position: relative;
+}
+.fireworks-random {
+  position: absolute;
+  width: 350px;
+  height: 180px;
+  pointer-events: none;
+  z-index: 10;
+}
+#fw1 { top: 0; left: 0; }
+#fw2 { top: 40%; left: 60%; }
+#fw3 { bottom: 0; right: 0; }
+@media (max-width: 700px) {
+  .fireworks-random {
+    width: 160px;
+    height: 80px;
+  }
 }
 
-/* 導覽連結列表 */
-.navbar-links {
-    list-style: none; /* 移除列表點 */
-    margin: 0 auto;
-    padding: 0;
-    display: flex; /* 水平排列連結 */
-    gap: 150px; /* 連結間距 */
+.cute-btn {
+  background: #FFD972;
+  border: none;
+  border-radius: 2em;
+  color: #fff;
+  font-weight: bold;
+  padding: 0.7em 2em;
+  margin-top: 1em;
+  font-size: 1.1em;
+  box-shadow: 0 2px 8px #e9e9e9;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.cute-btn:hover {
+  background: #B5EAD7;
+  color: #FFA5B9;
 }
 
-/* 導覽連結單個項目 */
-.navbar-links li a {
-    color: white; /* 連結文字顏色 */
-    text-decoration: none; /* 移除下劃線 */
-    font-size: 1.1rem; /* 字體大小 */
-    padding: 5px 0; /* 內邊距 */
+.fruit-row {
+  display: flex;
+  justify-content: center;
+  gap: 3em;
+  margin-top: 2.5em;
 }
 
-/* 連結懸停效果 */
-.navbar-links li a:hover {
-    color: #a5e6ff; /* 懸停顏色 */
+.fruit-min {
+  width: 150px;
+  height: 170px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  user-select: none;
+}
+.min-body {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-top: 18px;
+  box-shadow: 0 6px 30px #ffd6e044;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.tomato-body {
+  background: #ff6b6b;
+}
+.pineapple-body {
+  background: #ffe066;
+}
+.guava-body {
+  background: #b6e388;
 }
 
-/* ===== Section Base Styles ===== */
-section {
-    padding: 100px 20px 60px;
-    min-height: 100vh;
-    background: transparent;
-    width: 100vw;
-    max-width: 100vw;
-    margin: 0 auto;
-    border-radius: 0;
-    box-shadow: none;
-    position: relative;
-    box-sizing: border-box;
+.min-leaf {
+  width: 38px;
+  height: 18px;
+  background: #7dc855;
+  border-radius: 18px 18px 18px 18px / 13px 13px 13px 13px;
+  position: absolute;
+  top: 6px;
+  left: 60px;
+  transform: rotate(-16deg);
+  z-index: 2;
+}
+.pineapple-leaf {
+  background: #a8e063;
+  width: 28px;
+  height: 32px;
+  border-radius: 18px 18px 18px 18px / 17px 17px 17px 17px;
+  left: 66px;
+  top: -2px;
+  transform: rotate(-7deg);
+}
+.guava-leaf {
+  background: #7dc855;
+  left: 60px;
+  top: 6px;
+  width: 38px;
+  height: 18px;
+  border-radius: 18px 18px 18px 18px / 13px 13px 13px 13px;
+  transform: rotate(-16deg);
+}
+.tomato-leaf {
+  background: #7dc855;
+  left: 60px;
+  top: 6px;
+  width: 38px;
+  height: 18px;
+  border-radius: 18px 18px 18px 18px / 13px 13px 13px 13px;
+  transform: rotate(-16deg);
+}
+.min-eyes {
+  position: absolute;
+  top: 65px;
+  left: 0;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  gap: 26px;
+  z-index: 3;
+}
+.min-eyes::before,
+.min-eyes::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #222;
+  border-radius: 50%;
+  display: block;
 }
 
-section h2 {
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
+/* =================== 可愛卡片區 =================== */
+#cards {
+  position: relative;
 }
 
-.goal-item.saved {
-    border: none !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-    cursor: default;
+#weather-location,
+#weather-desc {
+  font-size: 2rem;
+  line-height: 2.4rem;
+  letter-spacing: 1px;
 }
 
-.emoji {
-    font-size: 2.5rem;
-    user-select: none;
+#today-todo-list {
+  font-size: 1.7rem;
+  line-height: 2.4rem;
+  letter-spacing: 1px;
+  list-style: none;
 }
 
-.goal-list {
-    width: 100%;
-    max-width: 600px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-bottom: 40px;
+#today-todo-list li {
+  font-size: 1.7rem;
+  line-height: 2.4rem;
+  letter-spacing: 1px;
+  padding-top: 0.3em;
+  padding-bottom: 0.3em;
 }
-
-.goal-item-label {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 1.4rem;
-    color: #34495e;
+.cute-card {
+  background: #fff;
+  border: 2px solid #FFD6E0;
+  border-radius: 1.5em;
+  box-shadow: 0 4px 16px #e9e9e9;
+  padding: 2.5em 2em;
+  width: 500px;  
+  height: 600px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.4em;
+  box-sizing: border-box;
 }
-
-.goal-item-label .emoji {
-    font-size: 1.8rem;
-}
-
-.goal-item {
-    flex: 1;
-    padding: 12px 15px;
-    font-size: 1.2rem;
-    border: 2px solid #2980b9;
-    border-radius: 8px;
-    outline: none;
-    transition: border-color 0.3s ease;
-}
-
-.goal-item:focus {
-    border-color: #e67e22;
-    box-shadow: 0 0 8px rgba(230, 126, 34, 0.6);
-}
-
-#save-goal-btn {
-    padding: 10px 28px;
-    font-size: 1.2rem;
-    font-weight: 600;
-    max-width: 150px;
-    margin:30px auto 0 auto;
-    background-color: #666ca4;
-    border: none;
-    border-radius: 50px;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-#save-goal-btn:hover {
-    background-color: #305c78;
-}
-
-.no-border {
-    border: none !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-}
-
-.main-content-container {
-    display: flex;
-    justify-content: space-between; 
-    width: 100%;
-    max-width: 1200px; 
-    gap: 30px;
-    flex-wrap: wrap; 
-    margin-top: 20px;
-}
-
-.info-section {
-    flex: 2; 
-    min-width: 280px; 
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
-}
-
-#card {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 100px 0 40px 0;
-    margin: 0;
-}
-
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 30px; 
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 50px auto 0 auto; 
-    z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2.5em;
+  width: 80vw;
+  max-width: 1400px;
+  margin: 2em auto 0 auto;
+  flex-wrap: nowrap;
 }
-
-.weather-card, .horoscope-card, .goal-card {
-    flex: 1; 
-    min-width: 300px;
-    max-width: 450px; 
-    background-color: rgba(255, 255, 255, 0.95); 
-    border-radius: 15px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); 
-    padding: 30px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    height: 500px;
-    overflow:auto;
+.cute-card h2 {
+  margin-top: 0;
+  font-size: 1.4em;
 }
-
-.weather-card:hover, .horoscope-card:hover, .goal-card:hover {
-    transform: translateY(-5px); 
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+.goal-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+  width: 100%;
+  margin-bottom: 1em;
 }
-
-.weather-card h3, .horoscope-card h3, .goal-card h3 {
-    font-size: 2rem; /* 增大標題字體 */
-    color: #34495e; /* 更深的顏色 */
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px; /* 增大 emoji 和文字間距 */
-    font-weight: 700;
+.goal-input-group label {
+  display: flex;
+  align-items: center;
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
 }
-
-.weather-card p {
-    font-size: 1.2rem; /* 增大文字 */
-    color: #555;
-    margin-bottom: 10px;
+.crown {
+  margin-right: 0.6em;
+  font-size: 1.3em;
 }
-
-#weather-temp {
-    font-size: 3rem; /* 溫度數字更顯眼 */
-    font-weight: bold;
-    color: #e67e22; /* 溫暖的橘色 */
-    margin-top: 15px;
-    margin-bottom: 15px;
+.goal-input {
+  flex: 1;
+  border-radius: 1em;
+  border: 1px solid #FFD6E0;
+  padding: 0.7em 1.2em;
+  font-size: 1.1em;
+  background: #FFF6FB;
+  transition: box-shadow 0.2s;
+  margin-left: 0.1em;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
 }
-
-/* 星座運勢選擇器樣式 */
-.horoscope-selector {
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.goal-input:focus {
+  box-shadow: 0 0 0 2px #FFD972;
+  outline: none;
 }
-
-.horoscope-selector label {
-    font-size: 1.2rem;
-    color: #34495e;
-    margin-bottom: 10px;
-    font-weight: 600;
+.goal-input[readonly]:focus {
+  box-shadow: none;
+  outline: none;
 }
-
-#horoscope-select {
-    padding: 12px 20px;
-    font-size: 1.1rem;
-    border: 2px solid #667eea; /* 與歡迎區塊色調一致 */
-    border-radius: 10px;
-    outline: none;
-    cursor: pointer;
-    background-color: #fcfcfc;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-    width: 90%;
-    max-width: 300px;
-    appearance: none; /* 移除預設下拉箭頭 */
-    background-image: url('data:image/svg+xml;utf8,<svg fill="%232c3e50" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>'); /* 自定義箭頭 */
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 20px;
+#goal-display-list {
+  margin: 0 0 1em 0;
+  padding-left: 0;
+  font-size: 1.14em;
+  color: #a0617a;
+  background: none;
 }
-
-#horoscope-select:focus {
-    border-color: #764ba2;
-    box-shadow: 0 0 10px rgba(118, 75, 162, 0.4);
+.goal-display-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4em;
+  font-size: 1.1em;
 }
-
-#horoscope-result {
-    font-size: 1.2rem;
-    color: #444;
-    line-height: 1.7;
-    margin-top: 15px;
+.goal-display-item .crown {
+  margin-right: 0.6em;
+  font-size: 1.3em;
 }
-
-@media (max-width: 992px) { /* 調整斷點，讓卡片更早堆疊 */
-    .cards-container {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
-    }
-    .weather-card, .horoscope-card, .goal-card { /* 確保所有卡片都適用 */
-        min-width: unset;
-        width: 90%;
-        max-width: 500px; /* 限制在平板上的最大寬度 */
-    }
-}
-
-@media (max-width: 768px) {
-    section {
-        padding: 60px 15px;
-    }
-    section h2 {
-        font-size: 2.2rem;
-    }
-    .welcome-content h1 {
-        font-size: 2.5rem;
-    }
-    .welcome-content .subtitle {
-        font-size: 1.2rem;
-    }
-    .start-button {
-        font-size: 1.1rem;
-        padding: 12px 30px;
-    }
-    .weather-card h3, .horoscope-card h3, .goal-card {
-        font-size: 1.6rem;
-    }
-    #weather-temp {
-        font-size: 2.5rem;
-    }
-    .horoscope-selector label {
-        font-size: 1.1rem;
-    }
-    #horoscope-select {
-        font-size: 1rem;
-    }
-    #horoscope-result {
-        font-size: 1.1rem;
-    }
-}
-
+/* fireworks container & fireworks */
 #fireworks-container {
     position: absolute;
     top: 10px;
@@ -396,152 +359,226 @@ section h2 {
     overflow: visible;
     z-index: 20;
 }
-
 .firework {
     position: absolute;
-    width: 6px;
-    height: 6px;
+    width: 10px;
+    height: 10px;
     border-radius: 50%;
-    opacity: 1;
-    filter: drop-shadow(0 0 6px);
-    animation: fireworkExplode 1s forwards ease-out;
+    opacity: 0.8;
+    transition: transform 0.8s cubic-bezier(0.2,1.2,0.3,1), opacity 1s;
 }
+.red { background: #ff5252!important; }
+.orange { background: #ffb142!important; }
+.yellow { background: #ffe066!important; }
+.blue { background: #70a1ff!important; }
+.green { background: #2ed573!important; }
+.purple { background: #a29bfe!important; }
 
-.firework.red {
-    background: radial-gradient(circle, #ff3b3b, #a70000);
-    filter: drop-shadow(0 0 8px #ff3b3b);
-}
-.firework.orange {
-    background: radial-gradient(circle, #ff9900, #cc6600);
-    filter: drop-shadow(0 0 8px #ff9900);
-}
-.firework.yellow {
-    background: radial-gradient(circle, #ffff66, #cccc00);
-    filter: drop-shadow(0 0 8px #ffff66);
-}
-.firework.blue {
-    background: radial-gradient(circle, #3399ff, #003399);
-    filter: drop-shadow(0 0 8px #3399ff);
-}
-.firework.green {
-    background: radial-gradient(circle, #33ff99, #00994d);
-    filter: drop-shadow(0 0 8px #33ff99);
-}
-.firework.purple {
-    background: radial-gradient(circle, #cc66ff, #660099);
-    filter: drop-shadow(0 0 8px #cc66ff);
-}
-
-@keyframes fireworkExplode {
-    0% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1);
-    }
-    100% {
-        opacity: 0;
-        transform: translate(var(--tx), var(--ty)) scale(0.1);
-    }
-}
-
-/* ===== Calendar Section ===== */
+/* =================== 月曆區塊 =================== */
 #calendar-app {
+    width: 90vw;
+    max-width: 1800px;
+    min-height: 72vh;
+    margin: 42px auto 0 auto;
     display: flex;
-    gap: 20px;
-    height: 80vh;
-    padding: 20px;
-    box-sizing: border-box;
+    gap: 2vw;
     align-items: stretch;
-    background:transparent;
-    min-height: 500px;
+    justify-content: center;
+    box-sizing: border-box;
 }
-
-#calendar {
-    flex: 7;
+#event-input {
+    flex: 0 0 30%;
+    min-width: 250px;
+    max-width: 450px;
+    background: #fff;
+    border-radius: 26px;
+    padding: 38px 36px 34px 36px;
+    box-shadow: 0 4px 28px 0 rgb(255 165 185 / 0.10);
     display: flex;
     flex-direction: column;
-    height: 100%;
-    background:transparent;
-    border-radius: 8px;
-    padding: 10px;
+    font-size: 1.15rem;
+    justify-content: flex-start;
     box-sizing: border-box;
 }
-
-#calendar-title {
-    font-size: 2rem;
-    font-weight: 700;
+.calendar-panel-title {
+    font-size: 1.7rem;
+    font-weight: bold;
     color: #003366;
-    margin-bottom: 10px;
-    user-select: none;
+    margin-bottom: 18px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 0.5em;
+}
+/* 新版表單佈局 */
+#event-form {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  align-items: stretch;
+  margin-bottom: 24px;
+  width: 100%;
+}
+.event-form-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.event-form-row.row-date {
+  justify-content: space-between;
+}
+.event-form-row.row-task {
+  justify-content: flex-end;
+  gap: 0.5em;
+}
+.event-label-date {
+  font-size: 1.08em;
+  color: #a0617a;
+  font-weight: bold;
+  margin-right: 12px;
+  flex: 0 0 auto;
+}
+#event-date-fake {
+  border: 2px solid #ffd6e0;
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-family: inherit;
+  font-size: 1.13em;
+  background: #fff6fb;
+  width: 170px;
+  box-sizing: border-box;
+  height: 46px;
+  line-height: 1.4;
+  cursor: pointer;
+  color: #333;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+#event-desc {
+  border: 2px solid #ffd6e0;
+  border-radius: 14px;
+  padding: 11px 16px;
+  font-size: 1.13em;
+  background: #fff6fb;
+  min-width: 0;
+  width: 100%;
+  min-height: 46px;
+  max-height: 70px;
+  box-sizing: border-box;
+  resize: none;
+  line-height: 1.4;
+  flex: 1 1 auto;
+}
+#event-form button[type="submit"] {
+  background: #a5e6ff;
+  color: #003366;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.13em;
+  cursor: pointer;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  box-shadow: 0 1.5px 4px #e0f7ff;
+  height: 46px;
+  transition: background 0.2s, color 0.2s;
+  padding: 0 24px;
+  flex: 0 0 auto;
+}
+#event-form button[type="submit"]:hover {
+  background: #003366;
+  color: #fff;
 }
 
-.shiny-star {
-    display: inline-block;
-    animation: twinkle 1.5s infinite alternate;
+/* 事項清單（新版） */
+#event-list ul {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+#event-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+  font-size: 1.13em;
+  color: #444;
+  background: none;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  gap: 0;
+}
+#event-list li span {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#event-list li button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.18em;
+  color: #a0617a;
+  transition: color 0.17s;
+}
+#event-list li button:hover {
+  color: #e57373;
+}
+#event-list .empty {
+  color: #bbb;
+  padding: 8px 0;
 }
 
-@keyframes twinkle {
-    0% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-    50% {
-        opacity: 0.6;
-        transform: scale(1.3) rotate(15deg);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1) rotate(0deg);
-    }
-}
-
-#calendar-wrapper {
-    flex: 1;
+/* 月曆主體 */
+#calendar {
+    flex: 0 0 70%;
+    min-width: 600px;
+    max-width: 1500px;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    justify-content: flex-end;
-    max-height: max-content;
 }
-
 #calendar-container {
     background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-    padding: 15px;
-    flex: 1;
+    border-radius: 26px;
+    box-shadow: 0 8px 32px 0 rgb(255 165 185 / 0.09);
+    padding: 30px 30px 0px 30px;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;
     height: 100%;
-    overflow: hidden;
+    min-width: 0;
+    min-height: 0;
+    max-width: 1000px;
+    max-height: 650px;
+    min-height: 650px;
+    min-width: 1000px;
+    margin: 0 auto;
 }
-
 #calendar-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     font-weight: 700;
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+    font-size: 1.32rem;
+    margin-bottom: 22px;
 }
-
 #calendar-header button {
     background: #a5e6ff;
     border: none;
     color: white;
-    font-size: 1.3rem;
-    padding: 6px 15px;
-    border-radius: 5px;
+    font-size: 1.15rem;
+    padding: 9px 24px;
+    border-radius: 9px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
 }
-
 #calendar-header button:hover {
     background: #003366;
+    color: #FFD972;
 }
-
 #calendar-weekdays {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -549,510 +586,403 @@ section h2 {
     font-weight: 600;
     color: #1f6391;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
+    padding-bottom: 10px;
+    margin-bottom: 17px;
+    font-size: 1.13em;
+    letter-spacing: 1px;
+    background: #f7faff;
 }
 
 #calendar-days {
+    flex: 1 1 auto;
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    gap: 8px;
-    flex: 1;
-    overflow-y: auto;
-    padding-bottom: 10px;
-    max-height: fit-content;
+    grid-template-rows: repeat(6, 1fr);
+    gap: 18px;
+    min-height: 580px;
+    max-height: 600px;
+    height: 470px;
+    align-items: stretch;
+    padding-bottom: 3px;
 }
-
 #calendar-days div {
-    padding: 10px 5px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    min-height: 60px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: flex-start;
+    background: #f9f9ff;
+    box-shadow: 0 1.5px 6px #ececec;
+    border-radius: 18px;
+    border: 1.2px solid transparent;
+    padding: 14px 7px 7px 14px;
+    min-width: 0;
+    min-height: 0;
+    font-size: 0.98rem;
     user-select: none;
+    cursor: pointer;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    transition: background 0.15s, color 0.15s, border 0.13s;
 }
-
 #calendar-days div:hover {
-    background-color: #d6e4ff;
+    background-color: #e1f4ff;
 }
-
 #calendar-days .today {
     background-color: #a5e6ff;
     color: white;
     font-weight: bold;
-    border-radius: 5px;
+    border-radius: 16px;
+    border: 2px solid #339af0;
+    box-shadow: 0 2px 8px #eaf6ff;
 }
-
+#calendar-days .selected-day {
+    background-color: #ffe2f2;
+    border: 2px solid #ffb3d1;
+    color: #b55e90;
+    font-weight: bold;
+    position: relative;
+}
 #calendar-days .other-month {
     color: #bbb;
     cursor: default;
 }
-
-#event-input {
-    flex: 3;
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    font-family: inherit;
-    font-size: 1rem;
-    overflow: hidden;
-}
-
-#event-input h3 {
-    margin-top: 0;
-    margin-bottom: 15px;
-}
-
-#event-input label {
+.day-number {
+    font-size: 0.96rem;
     font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-
-#event-input input[type="date"],
-#event-input textarea {
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 8px;
-    font-family: inherit;
-    font-size: 1rem;
-    box-sizing: border-box;
-    resize: vertical;
-}
-
-#event-desc {
-    flex-grow: 0;
-    resize: none;
-    min-height: 40px;
-    max-height: 60px;
-    margin-top: 8px;
-    margin-bottom: 10px;
-}
-
-#event-input button[type="submit"] {
-    background-color: #a5e6ff;
-    color: #003366;
-    border: none;
-    border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-}
-
-#event-input button:hover {
-    background-color: #003366;
-}
-
-#event-form {
+    color: #333;
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
-
-#event-list {
-    margin-top: 10px;
-    flex: 1;
-    overflow-y: auto;
-    border-top: 1px solid #ccc;
-    padding-top: 10px;
-    font-size: 0.95rem;
-}
-
-@media (max-width: 768px) {
-    #calendar-app {
-        flex-direction: column;
-        height: auto;
-    }
-    #calendar,
-    #event-input {
-        flex: none;
-        width: 100%;
-        height: auto;
-    }
-    #calendar-days {
-        grid-template-columns: repeat(7, 1fr);
-    }
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 0.3em;
 }
 
 .calendar-event-count {
-    margin-top: 4px;
-    font-size: 0.8rem;
-    color: #444;
-    display: inline-block;
-    background-color: #2980b9;
-    border-radius: 10px;
-    padding: 2px 6px;
-    align-self: flex-start;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  display: inline-flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  position: static !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: none !important;
 }
 
-.day-number {
+.calendar-event-count .pin-emoji {
+  font-size: 1.2em;
+  margin-right: 4px;
+  vertical-align: middle;
+  display: inline-block;
+  line-height: 1;
+}
+
+.calendar-event-count .pin-count {
+  color: #d23777;
+  font-size: 1em;
+  line-height: 1;
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+}
+
+/* 響應式 */
+@media (max-width: 1200px) {
+  #calendar-app {
+    flex-direction: column;
+    gap: 22px;
+    width: 96vw;
+    min-height: 0;
+    margin: 18px auto 0 auto;
+  }
+  #event-input, #calendar {
+    max-width: none;
+    min-width: 0;
+    width: 100%;
+  }
+  #calendar-container, #event-input {
+    padding: 15px 3vw 15px 3vw;
+    border-radius: 16px;
+  }
+  #calendar-container {
+    min-width: 0;
+    max-width: none;
+    min-height: 470px;
+    max-height: none;
+    height: 470px;
+  }
+}
+@media (max-width: 700px) {
+  #calendar-app {
+    margin: 6px auto 0 auto;
+    gap: 10px;
+  }
+  #calendar-container, #event-input {
+    padding: 7px 1vw 7px 1vw;
+    border-radius: 9px;
+  }
+  #calendar-header {
     font-size: 1rem;
-    font-weight: bold;
-    color: #333;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  }
+  #calendar-days {
+    grid-auto-rows: 28px;
     gap: 6px;
-    width: 100%;
+  }
 }
 
-.selected-day {
-    background-color: #cce5ff;
-    border-radius: 8px;
-    border: 2px solid #339af0;
-    color: #003366;
+/* =================== 其他區塊（番茄鐘/代辦） =================== */
+.todo-main-flex {
+  display: flex;
+  gap: 2em;
+  margin-top: 2em;
+  align-items: stretch;
 }
-
-/* ===== To-Do and Pomodoro Sections ===== */
-
-.main-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 30px;
-    gap: 30px;
-    min-height: calc(100vh - 60px);
-    margin-top: 60px;
-    flex-wrap:wrap;
-}
-
-/* Pomodoro section */
 .pomodoro-box {
-    width: 50%;
-    border-radius: 20px;
-    padding: 20px;
-    background:rgba(255,255,255,0.5);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+  width: 50%;
+  border-radius: 20px;
+  padding: 20px;
+  background:rgba(255,255,255,0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  min-height: 320px;
+  max-height: 100vh;
+  box-sizing: border-box;
 }
-
-/* To-Do section */
 .todo-container {
-    width: 40%;
-    border-radius: 20px;
-    padding: 20px;
-    background: rgba(255,255,255,0.5);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', sans-serif;
-    color: #333;
-    display: flex;
-    flex-direction: column;
+  width: 40%;
+  border-radius: 20px;
+  padding: 20px;
+  background: rgba(255,255,255,0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  font-family: Arial, 'Microsoft JhengHei', 'Segoe UI', 'Nunito', sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  max-height: 100vh;
+  box-sizing: border-box;
+  justify-content: flex-start;
+  overflow: auto;
 }
-
-.pomodoro-box,
-.todo-container {
-    flex: 1 1 350px; 
-    min-height: 320px;
-    max-height: 100vh;
-    overflow: auto;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-
-/* Floating Tomato Animation */
 .pomodoro-section { 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
-
 .tomato {
-    width: 50%;
-    height: auto;
-    background-color: #ff6b6b;
-    border-radius: 50% 50% 48% 52% / 55% 55% 45% 45%;
-    margin: 20px auto 0 auto;
-    aspect-ratio: 1/1;
-    position: relative;
-    animation: float 2.5s ease-in-out infinite;
+  width: 50%;
+  height: auto;
+  background-color: #ff6b6b;
+  border-radius: 50% 50% 48% 52% / 55% 55% 45% 45%;
+  margin: 20px auto 0 auto;
+  aspect-ratio: 1/1;
+  position: relative;
+  animation: float 2.5s ease-in-out infinite;
+  box-shadow: 0 2px 12px #ffbdbd;
 }
-
+@keyframes float {
+  0%, 100% { transform: translateY(0);}
+  50% { transform: translateY(-16px);}
+}
 .leaf {
-    width: 40px;
-    height: 20px;
-    background-color: #4CAF50;
-    position: absolute;
-    top: -10px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-15deg);
-    border-radius: 10px;
+  width: 40px;
+  height: 20px;
+  background-color: #4CAF50;
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-15deg);
+  border-radius: 10px;
 }
-
 .face {
-    position: relative;
-    width: 100%;
-    height: 100%;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
-
 .eyes {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    position: absolute;
-    top: 80px;
-    left: 50%;
-    transform: translateX(-50%);
-    transition: all 0.3s ease; /* 添加過渡效果，讓眼睛變化更平滑 */
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.3s ease;
 }
-
 .eye {
-    width: 12px;
-    height: 12px;
-    background-color: black;
-    border-radius: 50%;
-    transition: all 0.3s ease; /* 添加過渡效果 */
+  width: 12px;
+  height: 12px;
+  background-color: black;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
-
-/* --- Pomodoro Customization: Sleeping Eyes and No Z --- */
 .tomato.sleeping .eye {
-    /* 隱藏原本的眼珠 */
-    display: none;
+  display: none;
 }
-
 .tomato.sleeping .eyes {
-    /* 隱藏原本的 eyes 容器，因為我們將使用 ::before 和 ::after 創建新的閉眼線條 */
-    display: none;
+  display: none;
 }
-
 .tomato.sleeping .face::before,
 .tomato.sleeping .face::after {
-    content: '';
-    position: absolute;
-    top: 156px; 
-    width: 20px; /* 眼睛線條的寬度 */
-    height: 10px; /* 閉眼的線條高度 */
-    background-color: black;
-    border-radius: 2px;
-    transform: translateY(-50%);
+  content: '';
+  position: absolute;
+  top: 156px; 
+  width: 20px;
+  height: 10px;
+  background-color: black;
+  border-radius: 2px;
+  transform: translateY(-50%);
 }
-
 .tomato.sleeping .face::before {
-    left: calc(50% - 30px); /* 左眼位置 */
+  left: calc(50% - 30px);
 }
-
 .tomato.sleeping .face::after {
-    left: calc(50% + 10px); /* 右眼位置，兩眼間距 */
+  left: calc(50% + 10px);
 }
-
-/* (可選) 讓番茄在休息時稍微變暗，增加睡眠感 */
 .tomato.sleeping {
-    filter: brightness(0.8);
+  filter: brightness(0.8);
 }
 
+.pomo-settings-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.7em;
+  margin: 16px 0 12px 0;
+}
+.pomo-setting-col {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.85);
+  border-radius: 1.2em;
+  padding: 0.5em 1.2em 0.5em 1.2em;
+  font-size: 1.08em;
+  box-shadow: 0 1px 8px #f1e1e7;
+  gap: 0.22em;
+}
+.pomo-label {
+  color: #FFA5B9;
+  font-weight: bold;
+  margin-right: 0.2em;
+  font-size: 1.08em;
+}
+.pomo-unit {
+  color: #bba6b1;
+  font-size: 0.98em;
+  margin-left: 0.18em;
+}
+.pomo-mini-btn {
+  width: 1.85em;
+  height: 1.85em;
+  border-radius: 50%;
+  border: none;
+  background: #FFE2F2;
+  color: #FFA5B9;
+  font-weight: bold;
+  font-size: 1.2em;
+  margin: 0 0.14em;
+  box-shadow: 0 1.5px 4px #f7e7ee;
+  vertical-align: middle;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.16s, color 0.16s;
+  padding: 0;
+  line-height: 1;
+}
+.pomo-mini-btn:hover, .pomo-mini-btn:focus {
+  background: #FFD972;
+  color: #fff;
+  outline: none;
+}
+.pomo-num {
+  min-width: 1.8em;
+  display: inline-block;
+  text-align: center;
+  font-size: 1.13em;
+  color: #A0617A;
+  font-weight: bold;
+  margin: 0 0.05em;
+}
 
 .timer-text {
-    text-align: center;
-    font-size: 50px;
-    font-weight: bold;
-    position: absolute;
-    bottom: 20%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: white;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  text-shadow: 0 2px 8px #ffbdbd;
 }
-
-/* Floating animation */
-@keyframes float {
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-8px);
-    }
+#todo-form {
+  display: flex;
+  gap: 0.5em;
+  margin-bottom: 1em;
 }
-
-/* Settings input fields */
-.settings {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
-    font-size: 18px;
-    gap: 20px;
-    flex-wrap: wrap;
-    color: #000000;
-}
-
-.settings label {
-    flex: 1 1 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 8px;
-    min-width: 120px;
-}
-
-.settings input[type="number"] {
-    width: 60px;
-    padding: 8px;
-    font-size: 16px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    text-align: center;
-    color: #333;
-}
-
-/* Button Group */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    gap: 10px;
-}
-
-.button-group button {
-    flex: 1;
-    padding: 12px;
-    border: none;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    color: white;
-}
-
-#start-btn {
-    background-color: #5cb85c;
-}
-
-#pause-btn {
-    background-color: #f0ad4e;
-}
-
-#reset-btn {
-    background-color: #d9534f;
-}
-
-.button-group button:hover {
-    opacity: 0.85;
-}
-
-.button-group button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-    background-color: #cccccc;
-}
-
-/* ===== To-Do List Styles ===== */
-.todo-input-area {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
-}
-
 #todo-input {
-    flex-grow: 1;
-    padding: 10px 15px;
-    font-size: 16px;
-    border-radius: 12px;
-    border: none;
-    outline: none;
-    color: #333;
-    background-color: rgba(255,255,255,0.8);
+  flex: 1;
+  border-radius: 1em;
+  border: 1px solid #FFD6E0;
+  padding: 0.6em;
+  font-size: 1em;
+  background: #fff;
 }
-
-#add-btn {
-    background-color: #5cb85c;
-    border: none;
-    padding: 10px 20px;
-    font-weight: bold;
-    border-radius: 12px;
-    cursor: pointer;
-    color: white;
-    transition: background-color 0.3s ease;
-}
-
-#add-btn:hover {
-    background-color: #4cae4c;
-}
-
 #todo-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    flex-grow: 1;
-    overflow-y: auto;
+  margin-top: 1em;
+  list-style: none;
+  padding: 0;
 }
-
 .todo-item {
-    background-color: rgba(255, 195, 195, 0.8);
-    margin-bottom: 12px;
-    padding: 12px 15px;
-    border-radius: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: grab; /* 鼠標顯示為可抓取 */
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
-    user-select: none;
-    font-size: 16px;
-    color: #333;
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 1em;
+  margin-bottom: 0.6em;
+  padding: 0.6em 1em;
+  box-shadow: 0 2px 8px #e9e9e9;
+  font-size: 1.09em;
+  position: relative;
+  transition: background 0.2s;
+  min-width: 0;
 }
-
-.todo-item.completed {
-    opacity: 0.6;
-    background-color: rgba(123, 211, 157, 0.7);
-    color: #333;
-    cursor: default; /* 完成的項目不可拖曳，鼠標恢復預設 */
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+  color: #bbb;
 }
-
+.mark-btn, .delete-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-right: 0.6em;
+  margin-left: 0;
+  padding: 0 0.3em;
+}
+.delete-btn {
+  margin-left: auto;
+  color: #FFA5B9;
+  transition: color 0.17s;
+}
+.delete-btn:hover {
+  color: #e57373;
+}
 .todo-text {
-    flex-grow: 1;
-    margin-left: 10px;
-    word-break: break-word;
-}
-
-/* 為了兼容新的 mark-btn 和 delete-btn 結構，直接針對按鈕本身 */
-.todo-item .mark-btn,
-.todo-item .delete-btn {
-    background: none;
-    border: none;
-    font-size: 20px;
-    cursor: pointer;
-    user-select: none;
-    transition: transform 0.15s ease;
-    color: #333; /* 預設顏色，可被更具體的選擇器覆蓋 */
-    padding: 0 5px; /* 給按鈕一些內邊距，使其更容易點擊 */
-}
-
-.todo-item .mark-btn:hover,
-.todo-item .delete-btn:hover {
-    transform: scale(1.2);
-}
-
-.todo-item .mark-btn {
-    color: #28a745;
-}
-
-.todo-item .delete-btn {
-    color: #dc3545;
-}
-
-/* 為拖曳中的項目添加樣式，使其看起來正在被移動 */
-.todo-item.dragging {
-    opacity: 0.5;
-    border: 2px dashed #ccc;
-    background-color: #f9f9f9;
+  flex: 1 1 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0 0.6em;
 }
