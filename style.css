@@ -4,7 +4,7 @@ html {
 body {
   font-family: Arial, 'Microsoft JhengHei', 'Segoe UI', 'Nunito', sans-serif;
   margin: 0;
-  background: #FFE2F2;
+  background: #e2f8ff;
   color: #5e5e5e;
   padding: 0;
   box-sizing: border-box;
@@ -20,7 +20,7 @@ body {
 /* 導覽欄 */
 .navbar {
   width: 100vw;
-  background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
+  background: linear-gradient(90deg, #ddf9ff 0%, #9cd5ee 100%);
   box-shadow: 0 4px 16px rgba(238,156,167,0.20), 0 1.5px 6px rgba(0,0,0,0.08);
   padding: 0;
   margin: 0;
@@ -54,7 +54,7 @@ body {
   padding: 18px 34px;
   border-radius: 2em;
   text-decoration: none;
-  color: #d23777;
+  color: #3770d2;
   font-weight: 600;
   transition: background 0.18s, color 0.18s, box-shadow 0.18s;
   box-shadow: 0 2px 8px rgba(238,156,167,0.08);
@@ -63,7 +63,7 @@ body {
 }
 .navbar a:hover, .navbar a:focus {
   background: #fff0f6;
-  color: #ee599c;
+  color: #5981ee;
   box-shadow: 0 4px 16px rgba(238,156,167,0.16);
   text-shadow: 0 1px 4px #fff5f9;
 }
@@ -106,7 +106,7 @@ section#todo {
 }
 .home-title h1 {
   font-size: 3.2em;
-  color: #D23777;
+  color: #3768d2;
   margin-bottom: 0.6em;
   letter-spacing: 2px;
   text-shadow: 0 2px 8px #ffe2f0;
@@ -156,7 +156,7 @@ section#todo {
 }
 .cute-btn:hover {
   background: #B5EAD7;
-  color: #FFA5B9;
+  color: #a5baff;
 }
 
 /* =================== 更小的可愛水果 =================== */
@@ -233,7 +233,7 @@ section#todo {
   padding: 2em 2em !important;
   font-size: 1.18em !important;
   background: #fff;
-  border: 2px solid #FFD6E0;
+  border: 2px solid #d6f9ff;
   border-radius: 1.5em;
   box-shadow: 0 8px 28px 0 rgba(222, 105, 164, 0.18), 0 2px 12px #e9e9e9;
   transition: transform 0.24s cubic-bezier(.36,1.6,.3,1), box-shadow 0.24s;
@@ -256,7 +256,7 @@ section#todo {
 /* =================== 可愛卡片區 =================== */
 .cute-card {
   background: #fff;
-  border: 2px solid #FFD6E0;
+  border: 2px solid #d6edff;
   border-radius: 1.5em;
   box-shadow: 0 4px 16px #e9e9e9;
   padding: 2.5em 2em;
@@ -303,10 +303,10 @@ section#todo {
 .goal-input {
   flex: 1;
   border-radius: 1em;
-  border: 1px solid #FFD6E0;
+  border: 1px solid #d6eeff;
   padding: 0.7em 1.2em;
   font-size: 1.1em;
-  background: #FFF6FB;
+  background: #f6f8ff;
   transition: box-shadow 0.2s;
   margin-left: 0.1em;
   width: 100%;
@@ -326,7 +326,7 @@ section#todo {
   margin: 0 0 1em 0;
   padding-left: 0;
   font-size: 1.14em;
-  color: #a0617a;
+  color: #6166a0;
   background: none;
 }
 .goal-display-item {
@@ -528,18 +528,18 @@ section#todo {
 }
 .event-label-date {
   font-size: 1.08em;
-  color: #a0617a;
+  color: #617aa0;
   font-weight: bold;
   margin-right: 12px;
   flex: 0 0 auto;
 }
 #event-date-fake {
-  border: 2px solid #ffd6e0;
+  border: 2px solid #d6f6ff;
   border-radius: 14px;
   padding: 11px 16px;
   font-family: inherit;
   font-size: 1.13em;
-  background: #fff6fb;
+  background: #f6f8ff;
   width: 170px;
   box-sizing: border-box;
   height: 46px;
@@ -550,11 +550,11 @@ section#todo {
   min-width: 0;
 }
 #event-desc {
-  border: 2px solid #ffd6e0;
+  border: 2px solid #d6edff;
   border-radius: 14px;
   padding: 11px 16px;
   font-size: 1.13em;
-  background: #fff6fb;
+  background: #f6f8ff;
   min-width: 0;
   width: 100%;
   min-height: 46px;
@@ -614,11 +614,11 @@ section#todo {
   cursor: pointer;
   margin-left: 10px;
   font-size: 1.18em;
-  color: #a0617a;
+  color: #6b61a0;
   transition: color 0.17s;
 }
 #event-list li button:hover {
-  color: #e57373;
+  color: #7391e5;
 }
 #event-list .empty {
   color: #bbb;
@@ -681,7 +681,7 @@ section#todo {
     text-align: center;
     font-weight: 600;
     color: #1f6391;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #dddddd;
     padding-bottom: 10px;
     margin-bottom: 17px;
     font-size: 1.13em;
@@ -726,16 +726,16 @@ section#todo {
 }
 #calendar-days .today {
     background-color: #a5e6ff;
-    color: white;
+    color: rgb(255, 255, 255);
     font-weight: bold;
     border-radius: 16px;
     border: 2px solid #339af0;
     box-shadow: 0 2px 8px #eaf6ff;
 }
 #calendar-days .selected-day {
-    background-color: #ffe2f2;
-    border: 2px solid #ffb3d1;
-    color: #b55e90;
+    background-color: #e2f3ff;
+    border: 2px solid #b3c2ff;
+    color: #5e72b5;
     font-weight: bold;
     position: relative;
 }
@@ -780,7 +780,7 @@ section#todo {
 }
 
 .calendar-event-count .pin-count {
-  color: #d23777;
+  color: #3787d2;
   font-size: 1em;
   line-height: 1;
   display: inline-block;
@@ -917,7 +917,7 @@ section#todo {
   aspect-ratio: 1/1;
   position: relative;
   animation: float 2.5s ease-in-out infinite;
-  box-shadow: 0 2px 12px #ffbdbd;
+  box-shadow: 0 2px 12px #bde6ff;
 }
 @keyframes float {
   0%, 100% { transform: translateY(0);}
@@ -999,13 +999,13 @@ section#todo {
   gap: 0.22em;
 }
 .pomo-label {
-  color: #FFA5B9;
+  color: #a5d3ff;
   font-weight: bold;
   margin-right: 0.2em;
   font-size: 1.08em;
 }
 .pomo-unit {
-  color: #bba6b1;
+  color: #a2b8d4;
   font-size: 0.98em;
   margin-left: 0.18em;
 }
@@ -1014,8 +1014,8 @@ section#todo {
   height: 1.85em;
   border-radius: 50%;
   border: none;
-  background: #FFE2F2;
-  color: #FFA5B9;
+  background: #e2f8ff;
+  color: #a5d5ff;
   font-weight: bold;
   font-size: 1.2em;
   margin: 0 0.14em;
@@ -1053,7 +1053,7 @@ section#todo {
   left: 50%;
   transform: translateX(-50%);
   color: white;
-  text-shadow: 0 2px 8px #ffbdbd;
+  text-shadow: 0 2px 8px #bde1ff;
 }
 #todo-form {
   display: flex;
@@ -1063,7 +1063,7 @@ section#todo {
 #todo-input {
   flex: 1;
   border-radius: 1em;
-  border: 1px solid #FFD6E0;
+  border: 1px solid #d6efff;
   padding: 0.6em;
   font-size: 1em;
   background: #fff;
@@ -1101,11 +1101,11 @@ section#todo {
 }
 .delete-btn {
   margin-left: auto;
-  color: #FFA5B9;
+  color: #a5cfff;
   transition: color 0.17s;
 }
 .delete-btn:hover {
-  color: #e57373;
+  color: #7393e5;
 }
 .todo-text {
   flex: 1 1 0;
