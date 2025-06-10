@@ -10,57 +10,69 @@
   <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 </head>
 <body>
-  <!-- 導覽欄 -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#home">首頁</a></li>
-      <li><a href="#calendar-main">月曆</a></li>
-      <li><a href="#todo-main">代辦事項</a></li>
-    </ul>
-  </nav>
-
   <!-- 首頁 -->
-  <section id="home" class="page">
+  <section id="landing" class="page">
     <div class="welcome" style="position:relative;">
       <div id="fw1" class="fireworks-random"></div>
       <div id="fw2" class="fireworks-random"></div>
       <div id="fw3" class="fireworks-random"></div>
-      <div class="home-header-row">
-        <div class="home-title">
-          <h1>歡迎使用日常管家！</h1>
+      <div class="soft-welcome">
+        今天想做什麼？我們一起完成吧！
+      </div>
+      <div class="fluit-tip">點選水果們，開啟美好的一天!</div>
+      <h1 id="daily-quote"></h1>
+      <div class="landing-cards-container">
+        <!-- 小卡區介紹 -->
+        <div class="landing-card">
+          <div class="landing-card-fruit pineapple-min fruit-float" id="home-link-cards" title="小卡">
+            <div class="fruit-body pineapple-body"></div>
+            <div class="fruit-leaf pineapple-leaf"></div>
+            <div class="fruit-eyes"></div>
+          </div>
+          <div class="landing-card-title">Cards</div>
+          <div class="landing-card-desc">
+            運用三張小卡，讓生活井井有條</br>天天放晴照明你的心！
+          </div>
         </div>
-        <div class="fruit-row">
-          <!-- Pineapple -->
-          <div class="fruit-min pineapple-min">
-            <div class="min-leaf pineapple-leaf"></div>
-            <div class="min-body pineapple-body"></div>
-            <div class="min-eyes"></div>
+        <!-- 月曆區介紹 -->
+        <div class="landing-card">
+          <div class="landing-card-fruit guava-min fruit-float" id="home-link-calendar" title="月曆">
+            <div class="fruit-body guava-body"></div>
+            <div class="fruit-leaf guava-leaf"></div>
+            <div class="fruit-eyes"></div>
           </div>
-          <!-- Tomato -->
-          <div class="fruit-min tomato-min">
-            <div class="min-leaf tomato-leaf"></div>
-            <div class="min-body tomato-body"></div>
-            <div class="min-eyes"></div>
+          <div class="landing-card-title">Calendar</div>
+          <div class="landing-card-desc">
+            管理日常行程，輕鬆整理繁瑣生活</br>重要事項一目了然!
           </div>
-          <!-- Guava -->
-          <div class="fruit-min guava-min">
-            <div class="min-leaf guava-leaf"></div>
-            <div class="min-body guava-body"></div>
-            <div class="min-eyes"></div>
+        </div>
+        <!-- 代辦區介紹 -->
+        <div class="landing-card">
+          <div class="landing-card-fruit tomato-min fruit-float" id="home-link-todo" title="代辦">
+            <div class="fruit-body tomato-body"></div>
+            <div class="fruit-leaf tomato-leaf"></div>
+            <div class="fruit-eyes"></div>
+          </div>
+          <div class="landing-card-title">To-Do</div>
+          <div class="landing-card-desc">
+            建立待辦事項，可愛番茄陪你專注</br>每天都能高效完成目標！
           </div>
         </div>
       </div>
     </div>
-    <!-- 三張小卡 -->
+  </section>
+
+  <!-- 小卡頁 -->
+  <section id="home-cards" class="page" style="display:none;">
     <div id="home-cards-row" class="cards-container cards-home">
       <!-- 年度目標小卡 -->
       <div class="card cute-card home-card" id="goal-card" style="position: relative;">
         <div id="fireworks-container"></div>
         <h2>🎯 年度目標</h2>
         <div class="goal-input-group" id="goal-input-group">
-          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-1" placeholder="目標一..."></label>
-          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-2" placeholder="目標二..."></label>
-          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-3" placeholder="目標三..."></label>
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-1" placeholder="目標一"></label>
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-2" placeholder="目標二"></label>
+          <label><span class="crown">👑</span><input type="text" class="goal-input" id="goal-input-3" placeholder="目標三"></label>
         </div>
         <ul class="goal-display-list" id="goal-display-list" style="display:none; width:100%;"></ul>
         <button class="cute-btn" id="save-goal">儲存目標</button>
@@ -82,8 +94,8 @@
   </section>
 
   <!-- 月曆 -->
-  <section class="page">
-    <div id="calendar-main" style="scroll-margin-top:90px;">
+  <section id="calendar-main" class="page" style="display:none;">
+    <div style="scroll-margin-top:90px;">
       <div id="calendar-app">
         <!-- 新增事項區 -->
         <div id="event-input">
@@ -123,8 +135,8 @@
   </section>
 
   <!-- 代辦事項 -->
-  <section class="page">
-    <div id="todo-main" class="todo-main-flex" style="scroll-margin-top:90px;">
+  <section id="todo-main" class="page" style="display:none;">
+    <div class="todo-main-flex" style="scroll-margin-top:90px;">
       <!-- 浮動番茄鐘 -->
       <div class="pomodoro-box">
         <div class="pomodoro-section">
@@ -171,13 +183,37 @@
       <!-- 新增代辦 -->
       <div class="todo-container">
         <form id="todo-form">
-          <input type="text" id="todo-input" placeholder="新增代辦事項..." maxlength="30" required>
+          <input type="text" id="todo-input" autocomplete="off" placeholder="新增代辦事項..." maxlength="30" required>
           <button class="cute-btn" type="submit">新增</button>
         </form>
         <ul id="todo-list"></ul>
       </div>
     </div>
   </section>
+  <div id="fireworks-overlay"></div>
+  <!-- 浮動水果導航-->
+  <div class="floating-fruits">
+    <div class="floating-fruit blueberry-min fruit-float" data-target="#landing" title="首頁">
+      <div class="fruit-body blueberry-body"><span class="fruit-emoji">🏠</span></div>
+      <div class="fruit-leaf blueberry-leaf"></div>
+      <div class="fruit-eyes"></div>
+    </div>
+    <div class="floating-fruit pineapple-min fruit-float" data-target="#home-cards" title="小卡">
+      <div class="fruit-body pineapple-body"><span class="fruit-emoji">📇</span></div>
+      <div class="fruit-leaf pineapple-leaf"></div>
+      <div class="fruit-eyes"></div>
+    </div>
+    <div class="floating-fruit guava-min fruit-float" data-target="#calendar-main" title="月曆">
+      <div class="fruit-body guava-body"><span class="fruit-emoji">📅</span></div>
+      <div class="fruit-leaf guava-leaf"></div>
+      <div class="fruit-eyes"></div>
+    </div>
+    <div class="floating-fruit tomato-min fruit-float" data-target="#todo-main" title="代辦">
+      <div class="fruit-body tomato-body"><span class="fruit-emoji">📝</span></div>
+      <div class="fruit-leaf tomato-leaf"></div>
+      <div class="fruit-eyes"></div>
+    </div>
+  </div>
   <script src="script.js"></script>
 </body>
 </html>
